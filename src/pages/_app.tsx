@@ -60,13 +60,13 @@ export default function App({ Component, pageProps }: AppProps) {
         </Link>}
       </div>
     }
-      <Image src={circle} alt='background image' className='fixed bottom-[30%] -right-20' />
+      <Image src={circle} alt='background image' className='fixed bottom-[200px] -right-20' />
       <Image src={circle} alt='background image' className='fixed -bottom-16 -left-20' />
-      <Image src={rectangle} alt='background image' className='fixed -left-5' />
-      <Image src={whiteStar} alt='background image' className='fixed bottom-[40%] -left-3 rotate-[25deg]' width={40} height={42}/>
-      <Image src={whiteStar} alt='background image' className='fixed bottom-[57%] right-5' />
+      <Image src={rectangle} alt='background image' className='fixed top-0 -left-5' />
+      <Image src={whiteStar} alt='background image' className='fixed bottom-[250px] -left-3 rotate-[25deg]' width={40} height={42}/>
+      <Image src={whiteStar} alt='background image' className='fixed bottom-[400px] right-5' />
       <Image src={blueStar} alt='background image' className='fixed bottom-6 right-20' />
-      <Image src={blueStar} alt='background image' className='fixed right-6' />
+      <Image src={blueStar} alt='background image' className='fixed top-0 right-6' />
       <Image src={blueStar} alt='background image' className='fixed top-5' />
     </div>
 }
