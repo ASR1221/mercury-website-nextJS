@@ -22,3 +22,16 @@ a:hover {
    text-decoration: underline;
    color: rgba(255, 0, 0);
 }
+
+dialog {
+   scrollbar-width: none;
+}
+
+dialog::-webkit-scrollbar {
+   width: 0.5em;
+   height: 0.5em;
+ }
+ 
+dialog::-webkit-scrollbar-thumb {
+   background-color: transparent;
+ }
