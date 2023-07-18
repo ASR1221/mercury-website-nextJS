@@ -5,8 +5,6 @@ type CommentObj = ResObj & {
    comments: Comment[],
 }
 
-// TODO: use react query and add input to addcomments if possible
-
 export default function PostComp({ posts, users }: { posts: Post[], users: User[] }) {
 
    const [comments, setComments] = useState<Comment[]>([]);

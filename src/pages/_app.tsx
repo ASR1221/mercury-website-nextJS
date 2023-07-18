@@ -48,6 +48,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const pageName = useMemo(() => {
     return pathname === "/home" ? "Home"
       : pathname === "/search" ? "Search"
+      : pathname.includes("/user") ? "User"
       : pathname === "/profile" ? "Profile" : "";
   }, [pathname]);
 
