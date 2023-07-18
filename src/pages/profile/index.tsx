@@ -7,10 +7,18 @@ type PostRes = ResObj & {
    posts: Post[]
 };
 
+type Cookies = {
+   id?: string;
+   username?: string;
+   email?: string;
+ }
+
 export async function getServerSideProps({ req }: { req: NextRequest }) {
-   const id = req.cookies?.id;
-   const username = req.cookies?.username;
-   const email = req.cookies?.email;
+   
+   const cookies = req.cookies as Cookies;
+   const id = cookies?.id;
+   const username = cookies?.username;
+   const email = cookies?.email;
 
    if (!(id && username && email)) return {
       redirect: {

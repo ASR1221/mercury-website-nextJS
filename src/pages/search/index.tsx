@@ -34,7 +34,7 @@ export default function Search() {
          .then(res => res.json())
          .then(data => {
             setPosts(data.posts);
-            const promises = data.posts?.map(post => fetch(`https://dummyjson.com/users/${post.userId}?select=username,id,email`));
+            const promises = data.posts?.map((post: Post) => fetch(`https://dummyjson.com/users/${post.userId}?select=username,id,email`));
 
             if (promises)
                Promise.all(promises)
