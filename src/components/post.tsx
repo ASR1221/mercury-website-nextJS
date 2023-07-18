@@ -59,7 +59,7 @@ export default function PostComp({ posts, users }: { posts: Post[], users: User[
                name="comment"
                placeholder="Write a comment"
                className="w-[100%] sm:w-[99%] max-w-lg p-2 bg-gray-700 text-slate-50 outline-none rounded-ee-lg rounded-es-lg"
-               onKeyDown={(e) => { if(e.key === "Enter") e.target.value = ""}}
+               onKeyDown={(e: any) => { if(e.key === "Enter") e.target.value = ""}}
             />
          </div>
 
