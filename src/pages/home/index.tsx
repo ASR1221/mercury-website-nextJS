@@ -1,36 +1,42 @@
-import type { Post } from "@/types/types";
-import Link from "next/link";
+import type { Post, ResObj, User } from "@/types/types";
+
+import PostComp from "@/components/post";
+
+type PostRes = ResObj & {
+   posts: Post[]
+};
 
 export async function getServerSideProps() {
-   try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      if (!res.ok) {
-         return {
-            props: { ok: false, posts: [] }
-         }
-      }
 
-      const posts: Post[] = await res.json();
-      return {
-         props: { ok: true, posts }
-      }
-   } catch (e) {
-      return {
-         props: { ok: false, posts: [] }
+   const postRes = await fetch("https://dummyjson.com/posts");
+   if (!postRes.ok) throw new Error("Ops, something wrong happened. Please refresh the page.");
+
+
+   const postObj: PostRes = await postRes.json();
+
+   const promises = postObj.posts.map(post => fetch(`https://dummyjson.com/users/${post.userId}?select=username,id,email`));
+
+   const results = await Promise.all(promises);
+
+   const promises2 = results.map(result => {
+      if (!result.ok) throw new Error("Ops, something wrong happened. Please refresh the page.");;
+      return result.json();
+   });
+
+   const users: User[] = await Promise.all(promises2);
+   
+   return {
+      props: {
+         posts: postObj.posts,
+         users,
       }
    }
 }
 
-export default function Posts({ ok, posts }: { ok: boolean, posts: Post[] }) {
-   
-   if (!ok) {
-      return <>
-         <h2>Error</h2>
-         <p>Sorry, something went wrong. Go back to <Link href="/">home page</Link></p>
-      </>
-   }
+export default function Posts({ posts, users }: { posts: Post[], users: User[] }) {
 
-   return <>
-      
-   </>
+   return <div className="mt-12">
+      <PostComp posts={posts} users={users}/>
+   </div>
+   
 }
